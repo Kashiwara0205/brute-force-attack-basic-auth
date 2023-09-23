@@ -8,6 +8,7 @@ docker-compsoe up
 ```
 
 ## コンテナの中に入ってhydra実行
+
 ```
 docker exec -ti basic-auth /bin/bash
 cd password-list/
@@ -24,8 +25,29 @@ hydra -l username -P password-list.txt localhost http-get /index.html
 ## デバッグ用
 
 ### コンテナの中に入ってパスワード生成
+
 ```
 docker exec -ti basic-auth /bin/bash
 # 既存ファイルが上書きされるので注意
 htpasswd -c /etc/nginx/.htpasswd [ユーザ名]
+```
+
+### 単語生成
+
+```
+docker exec -ti basic-auth /bin/bash
+crunch 3 7 abcdefghijklmnopqrstu
+
+aaa
+aab
+aac
+aad
+aae
+aaf
+aag
+aah
+aai
+.
+.
+.
 ```
