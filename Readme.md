@@ -7,14 +7,10 @@ docker-compose build
 docker-compsoe up
 ```
 
-##　パスワード生成
-```
-sudo htpasswd -c /etc/nginx/.htpasswd [ユーザ名]
-```
-
 ## コンテナの中に入ってhydra実行
 ```
 docker exec -ti basic-auth /bin/bash
+cd password-list/
 hydra -l username -P password-list.txt localhost http-get /index.html
 ```
 
@@ -25,3 +21,11 @@ hydra -l username -P password-list.txt localhost http-get /index.html
 1 of 1 target successfully completed, 1 valid password found
 ```
 
+## デバッグ用
+
+### コンテナの中に入ってパスワード生成
+```
+docker exec -ti basic-auth /bin/bash
+# 既存ファイルが上書きされるので注意
+htpasswd -c /etc/nginx/.htpasswd [ユーザ名]
+```
